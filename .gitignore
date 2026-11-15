@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Training outputs
+logs/
+runs/
+wandb/
+checkpoints/
+*.pt
+*.pth
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store

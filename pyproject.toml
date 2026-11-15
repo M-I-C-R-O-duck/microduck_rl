@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "microduck-rl"
+version = "0.1.0"
+description = "RL training for MicroDuck in MuJoCo"
+requires-python = ">=3.10"
+dependencies = [
+    "mujoco",
+    "numpy",
+    "torch",
+    "pyyaml",
+    "onnx",
+]
