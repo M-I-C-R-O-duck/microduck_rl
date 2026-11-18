@@ -4,14 +4,25 @@ import time
 import mujoco
 import mujoco.viewer
 
+import yaml
+
 class MicroDuckEnv:
 
-    def __init__(self, xml_path=None):
+    def __init__(self, xml_path=None, config_path=None):
+        # load xmf files
         if xml_path is None:
             xml_path = Path(__file__).parent.parent / "tests" / "fixtures" / "toy_assets"  / "scene.xml" # TODO: need to fix
-
         self.model = mujoco.MjModel.from_xml_path(str(xml_path))
         self.data = mujoco.MjData(self.model)
+
+        # load config file
+        if config_path is None:
+            config_path = Path(__file__).parent.parent / "config" / "environmental.yaml"
+        with open(config_path) as f:
+            cfg = yaml.safe_load(f)
+        self.control_freq = cfg["control_freq"]
+        self.action_scale = cfg["action_scale"]
+        self.episode_seconds = cfg["episode_seconds"]
 
 
     def run_viewer(self): # run simulation for 5 seconds
@@ -20,8 +31,10 @@ class MicroDuckEnv:
                 mujoco.mj_step(self.model, self.data) # sim time += 0.002 s
                 viewer.sync()                         # redraw the window
                 time.sleep(self.model.opt.timestep)   # wait ~0.002 s (depends on the val set in model.opt.timestep)
-
         time.sleep(0.5)
+
+    
+
 
 
 if __name__ == "__main__":

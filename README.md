@@ -2,6 +2,16 @@
 
 Reinforcement learning for the **MicroDuck** robot in **MuJoCo**, using a from-scratch **PPO** implementation, with ONNX export for deployment outside simulation.
 
+## Setup
+
+Run from the repo root: (don't do pip install -e as for now)
+
+```bash
+python3 -m venv .venv          # create the virtual environment (first time only)
+source .venv/bin/activate      # activate it (every new terminal)
+pip install -e .               # install the project + dependencies (first time, or after editing pyproject.toml)
+```
+
 ## Project Structure
 
 ```
