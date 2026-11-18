@@ -1,0 +1,4 @@
+# config/environment.yaml
+control_freq: 50        # Hz, policy decision rate
+action_scale: 0.3       # rad, max offset from home pose per action
+episode_seconds: 10.0
