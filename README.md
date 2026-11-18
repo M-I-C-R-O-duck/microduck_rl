@@ -38,11 +38,12 @@ microduck-rl/
 
 ### `envs/` — Environment interface
 `microduck_env.py` wraps MuJoCo so the RL code can interact with the robot. Planned functionality:
-- Load MicroDuck and display it in the MuJoCo viewer
-- Read joint positions and velocities
-- Send a command to a joint and observe its movement
-- Reset the simulation to a known initial configuration
-- Translate policy outputs into actuator commands
+- Load MicroDuck and display it in the MuJoCo viewer : setup and debugging
+- Read joint positions and velocities : the raw material for observations
+- Send a command to a joint and observe its movement : the raw material for step()
+- Reset the simulation to a known initial configuration : reset()
+- Translate policy outputs into actuator commands : action mapping inside step()
+- Observations, rewards, termination conditions : the RL-specific parts that come last
 - *(more to come: observations, rewards, termination conditions)*
 
 ### `algorithms/` — PPO
