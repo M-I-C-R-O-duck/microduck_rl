@@ -1,0 +1,857 @@
+<mujoco model = "microduck_test">
+    <compiler meshdir="meshes"/>
+    <option integrator = "implicitfast"/>
+    <default>
+        <geom mass="0"/>
+        <default class = "collision">
+            <geom type = "mesh"
+                  mass = "0"
+                  group = "3"
+                  contype ="1"
+                  conaffinity = "1"/>
+        </default>
+        <default class="detail_visual">
+            <geom type="mesh"
+                mass="0"
+                contype="0"
+                conaffinity="0"
+                group="2"/>
+        </default>
+        <default class = "chosen_actuator">
+            <joint damping = "0.053" frictionloss = "0.0048" armature = "0.0018"/>
+            <position kp = "0.55" kv = "0" ctrlrange = "-10 10" forcerange = "-0.96 0.96" ctrllimited = "true" forcelimited = "true"/>
+        </default>
+    </default>
+    <asset>
+        <mesh name = "trunk_mesh" file = "trunk_base.stl"/>
+        <mesh name = "ull_mesh" file = "upper_leg_left.stl"/>
+        <mesh name = "yaw2roll_mesh" file = "yaw2roll.stl"/>
+        <mesh name = "hip_l_mesh" file = "hip_l.stl"/>
+        <mesh name = "leg_mesh" file = "leg.stl"/>
+        <mesh name = "ankle_left_mesh" file = "ankle_left.stl"/>
+        <mesh name = "foot_left_mesh" file = "foot_left.stl"/>
+        <mesh name = "sole_left_mesh" file = "sole_left.stl"/>
+        <mesh name = "upper_leg_right_mesh" file = "upper_leg_right.stl"/>
+        <mesh name = "ankle_right_mesh" file = "ankle_right.stl"/>
+        <mesh name = "foot_right_mesh" file = "foot_right.stl"/>
+        <mesh name = "sole_right_mesh" file = "sole_right.stl"/>
+        <mesh name = "neck_mesh" file = "neck.stl"/>
+        <mesh name = "neck_pitch_mesh" file = "neck_pitch.stl"/>
+        <mesh name = "yaw_roll_motion_mesh" file = "yaw_roll_motion.stl"/>
+        <mesh name = "left_shell_mesh" file = "left_shell.stl"/>
+        <mesh name = "right_shell_mesh" file = "right_shell.stl"/>
+        <mesh name = "face_part_mesh" file = "face_part.stl"/>
+        <mesh name = "top_head_shell_mesh" file = "top_head_shell.stl"/>
+        <mesh name = "bottom_head_shell_mesh" file = "bottom_head_shell.stl"/>
+        <mesh name = "jaw_mesh" file = "jaw.stl"/>
+        <mesh name = "noenoeil_mesh" file = "noenoeil.stl"/>
+        <mesh name="jaw_soft_mesh" file="jaw_soft.stl"/>
+        <mesh name="bearing_22_mesh" file="seeed_bearing__configuration__22x16x4.stl"/>
+        <mesh name="bearing_default_mesh" file="seeed_bearing__configuration_default.stl"/>
+        <mesh name="bearing_roll_mesh" file="bearing_roll.stl"/>
+        <mesh name="upper_leg_rigidity_plate_mesh" file="upper_leg_rigidity_plate.stl"/>
+        <mesh name="banana_pcb_locker_mesh" file="banana_pcb_locker.stl"/>
+        <mesh name="power_support_mesh" file="power_support.stl"/>
+        <mesh name="motor_support_mesh" file="motor_support.stl"/>
+        <mesh name="np_f970_mesh" file="np_f970.stl"/>
+        <mesh name="robot_hat_mesh" file="elec_rpi_robot_hat_pcb.stl"/>
+        <mesh name="rpi_zero_mesh" file="pcb__raspberry_pi_zero_2_w.stl"/>
+        <mesh name="speaker_mesh" file="speaker.stl"/>
+        <mesh name="lens_mesh" file="lens.stl"/>
+        <mesh name="m12_lens_holder_mesh" file="m12_lens_holder.stl"/>
+        <mesh name="soft_mouth_top_mesh" file="soft_mouth_top.stl"/>
+        <mesh name="xl330_mesh" file="xl330.stl"/>
+
+
+        
+    </asset>
+
+    <worldbody>
+        <geom name = "ground"
+              type = "plane"
+              pos = "0 0 0"
+              size = "2 2 0.1"
+              rgba = "0.34 0.4 0.45 1"
+              contype = "1"
+              conaffinity = "1"/>
+        <body name = "trunk_body" pos="0 0 0.12" quat = "1 0 0 0">
+
+            <geom name="trunk_bearing_left_visual"
+                class="detail_visual"
+                mesh="bearing_22_mesh"
+                pos="0.006 0.0175 -0.005"
+                quat="1 0 0 0"/>
+
+
+            <geom name="trunk_pcb_locker_visual"
+                class="detail_visual"
+                mesh="banana_pcb_locker_mesh"
+                pos="0.0042 0 -0.0175215"
+                quat="0.707107 0 0 0.707107"/>
+
+
+            <geom name="trunk_xl330_left_visual"
+                class="detail_visual"
+                mesh="xl330_mesh"
+                pos="0.006 0.0175 0.0115"
+                quat="0 -0.707107 0 -0.707107"/>
+
+
+            <geom name="trunk_power_support_visual"
+                class="detail_visual"
+                mesh="power_support_mesh"
+                pos="0.004 0 -0.0175215"
+                quat="0.707107 0 0 0.707107"/>
+            <geom name = "trunk_collision"
+                  class = "collision"
+                  mesh = "trunk_mesh"
+                  pos = "0.004 0 -0.0175"
+                  quat = "0.707107 0 0 0.707107"/>
+            <geom name="trunk_np_f970_visual"
+                class="detail_visual"
+                mesh="np_f970_mesh"
+                pos="-0.0359693 0 -0.00385049"
+                quat="0.00617059 0.70708 -0.70708 -0.00617059"/>
+            <geom name="trunk_xl330_right_visual"
+                class="detail_visual"
+                mesh="xl330_mesh"
+                pos="0.006 -0.0175 0.0115"
+                quat="0 -0.707107 0 -0.707107"/>
+            <geom name="trunk_bearing_right_visual"
+                class="detail_visual"
+                mesh="bearing_22_mesh"
+                pos="0.006 -0.0175 -0.005"
+                quat="1 0 0 0"/>
+            <freejoint name = "trunk_freejoint"/>
+            <inertial
+                pos = "-0.0226332 -2.70828e-05 0.00280064"
+                mass = "0.199224"
+                fullinertia = "0.000123975 0.000145931 0.000115351 7.1651e-08 -2.06915e-05 1.32429e-07"/>
+            <geom name = "trunk"
+                  type = "mesh"
+                  mesh = "trunk_mesh"
+                  pos = "0.004 0 -0.0175"
+                  quat = "0.707107 0 0 0.707107"
+                  contype = "0"
+                  conaffinity = "0"/>
+            <body name = "left_shell" pos="0 0 0" quat = "1 0 0 0">
+                <geom name="left_shell_collision"
+                      class="collision"
+                      mesh="left_shell_mesh"
+                      pos="0.004 0 -0.0175785"
+                      quat="0.707107 0 0 0.707107"/>
+                <geom name = "left_shell_visual"
+                      type = "mesh"
+                      mesh = "left_shell_mesh"
+                      pos = "0.004 0 -0.0175785"
+                      quat = "0.707107 0 0 0.707107"
+                      contype = "0"
+                      conaffinity = "0"/>
+            </body>
+            <body name = "right_shell" pos="0 0 0" quat = "1 0 0 0">
+                <geom name="right_shell_collision"
+                      class="collision"
+                      mesh="right_shell_mesh"
+                      pos="0.004 -0.0005 -0.0175"
+                      quat="0.707107 0 0 0.707107"/>
+                <geom name = "right_shell_visual"
+                      type = "mesh"
+                      mesh = "right_shell_mesh"
+                      pos = "0.004 -0.0005 -0.0175"
+                      quat = "0.707107 0 0 0.707107"
+                      contype = "0"
+                      conaffinity = "0"/>
+            </body>
+            <body name = "neck" pos = "0.026 0.0145 0.0324215" quat = "0 0 0.707107 -0.707107">
+                <inertial pos="0 -0.025 0.0141665"
+                          mass="0.0368414"
+                          fullinertia="1.72925e-05 3.12694e-06 1.63707e-05 0 0 0"/>
+                <geom name="neck_xl330_upper_visual"
+                    class="detail_visual"
+                    mesh="xl330_mesh"
+                    pos="0 0 0.0145"
+                    quat="0.5 -0.5 -0.5 -0.5"/>
+
+                <geom name="neck_xl330_lower_visual"
+                    class="detail_visual"
+                    mesh="xl330_mesh"
+                    pos="0 -0.05 0.0145"
+                    quat="0.5 0.5 -0.5 0.5"/>
+                <geom name = "neck_visual"
+                      type = "mesh"
+                      mesh = "neck_mesh"
+                      pos = "0.022 0.05 0.028"
+                      quat = "0.5 0.5 0.5 -0.5"
+                      contype = "0"
+                      conaffinity = "0"/>
+                <joint name = "neck_pitch"
+                       type = "hinge"
+                       pos = "0 0 0"
+                       axis = "0 0 1"
+                       limited = "true"
+                       range = "-1.570796 1.047198"
+                       class="chosen_actuator"/>
+                <body name = "neck_pitch" pos = "0 -0.05 0" quat = "0 1 0 0">
+                    <geom name="neck_pitch_bearing_visual"
+                            class="detail_visual"
+                            mesh="bearing_22_mesh"
+                            pos="0 0.0207931 -0.0145"
+                            quat="0.707107 0.707107 0 0"/>
+                    <inertial pos="-6.533e-09 0.0116641 -0.0145"
+                              mass="0.00572"
+                              fullinertia="1.09186e-06 9.66855e-07 5.12111e-07 0 0 0"/>
+                    <geom name = "neck_pitch_visual"
+                          type = "mesh"
+                          mesh = "neck_pitch_mesh"
+                          pos = "0 0.0287931 -0.0145"
+                          quat = "0.5 -0.5 -0.5 -0.5"
+                          contype = "0"
+                          conaffinity = "0"/>
+                    <joint name = "head_pitch"
+                           type = "hinge"
+                           pos = "0 0 0"
+                           axis = "0 0 1"
+                           limited = "true"
+                           range = "-1.570796 1.570796"
+                           class="chosen_actuator"/>
+                    <body name = "yaw_roll_motion" pos = "0 0.0186931 -0.0145" quat = "0 0 -0.707107 -0.707107">
+                        <inertial pos="-0.000166657 -0.00500964 0.0178065"
+                                  mass="0.0486"
+                                  fullinertia="6.97903e-06 8.10293e-06 9.57884e-06 3.21657e-07 -3.4797e-08 3.4295e-07"/>
+                        <geom name="head_yaw_xl330_visual"
+                            class="detail_visual"
+                            mesh="xl330_mesh"
+                            pos="0 0 0.0145"
+                            quat="0.5 -0.5 -0.5 -0.5"/>
+
+                        <geom name="head_yaw_bearing_left_visual"
+                            class="detail_visual"
+                            mesh="bearing_22_mesh"
+                            pos="-0.016 0 0.0145"
+                            quat="0.707107 0 -0.707107 0"/>
+
+                        <geom name="head_yaw_bearing_right_visual"
+                            class="detail_visual"
+                            mesh="bearing_22_mesh"
+                            pos="0.018 0 0.0145"
+                            quat="0.707107 0 -0.707107 0"/>
+                        <geom name = "yaw_roll_motion_visual"
+                              type = "mesh"
+                              mesh = "yaw_roll_motion_mesh"
+                              pos = "0 0 0.01"
+                              quat = "0.707107 0 0 0.707107"
+                              contype = "0"
+                              conaffinity = "0"/>
+                        <joint name = "head_yaw"
+                               type = "hinge"
+                               pos = "0 0 0"
+                               axis = "0 0 1"
+                               limited = "true"
+                               range = "-2.967060 2.967060"
+                               class="chosen_actuator"/>
+                        <body name = "jaw_soft" pos = "-0.0179 0 0.0145" quat = "0.707107 0 -0.707107 0">
+                            <inertial pos="0.00460523 0.00120047 -0.0324761"
+                                      mass="0.188766"
+                                      fullinertia="0.000320811 0.0002541 0.000149882 -6.32293e-07 6.57153e-06 4.18477e-06"/>
+     
+                            <geom name="head_lens_visual"
+                                class="detail_visual"
+                                mesh="lens_mesh"
+                                pos="0.0155 -9.13778e-05 -0.05548"
+                                quat="0.5 -0.5 0.5 -0.5"/>
+
+
+                            <geom name="head_xl330_side_visual"
+                                class="detail_visual"
+                                mesh="xl330_mesh"
+                                pos="0.003 0.0255 -0.018"
+                                quat="0.707107 0 0 -0.707107"/>
+
+
+                            <geom name="head_motor_support_visual"
+                                class="detail_visual"
+                                mesh="motor_support_mesh"
+                                pos="-0.0045 0 -0.018"
+                                quat="0.5 0.5 0.5 0.5"/>
+
+                            <geom name="head_xl330_center_visual"
+                                class="detail_visual"
+                                mesh="xl330_mesh"
+                                pos="0 0 0.0145"
+                                quat="0.5 -0.5 -0.5 -0.5"/>
+
+
+                            <geom name="head_bearing_visual"
+                                class="detail_visual"
+                                mesh="bearing_default_mesh"
+                                pos="0.0032 -0.04 -0.018"
+                                quat="0.5 -0.5 0.5 0.5"/>
+
+                            <geom name="head_robot_hat_visual"
+                                class="detail_visual"
+                                mesh="robot_hat_mesh"
+                                pos="0.02694 0.0289936 -0.0519"
+                                quat="0.707107 0 0 -0.707107"/>
+
+
+                            <geom name="head_soft_mouth_top_visual"
+                                class="detail_visual"
+                                mesh="soft_mouth_top_mesh"
+                                pos="-0.00420071 1.7776e-08 -0.0180814"
+                                quat="0.5 0.5 0.5 0.5"/>
+
+
+                            <geom name="head_m12_lens_holder_visual"
+                                class="detail_visual"
+                                mesh="m12_lens_holder_mesh"
+                                pos="0.0155 -9.13778e-05 -0.05558"
+                                quat="0.5 -0.5 0.5 -0.5"/>
+
+
+                            <geom name="head_rpi_zero_visual"
+                                class="detail_visual"
+                                mesh="rpi_zero_mesh"
+                                pos="0.015435 -1.13778e-05 -0.06001"
+                                quat="0.5 -0.5 -0.5 0.5"/>
+
+
+                            <geom name="head_speaker_visual"
+                                class="detail_visual"
+                                mesh="speaker_mesh"
+                                pos="0.01 -0.016786 0.0260226"
+                                quat="0.5 0.5 0.5 0.5"/>
+                            <geom name = "jaw_soft_visual"
+                                  type = "mesh"
+                                  mesh = "jaw_soft_mesh"
+                                  pos = "-0.0046 0 -0.0179996"
+                                  quat = "0.5 0.5 0.5 0.5"
+                                  contype = "0"
+                                  conaffinity = "0"/>
+                            <joint name = "head_roll"
+                                   type = "hinge"
+                                   pos = "0 0 0"
+                                   axis = "0 0 1"
+                                   limited = "true"
+                                   range = "-0.436332 0.436332"
+                                   class="chosen_actuator"/>
+                            <body name = "face_part" pos="0 0 0" quat = "1 0 0 0">
+                                <geom name = "face_part_visual"
+                                    type = "mesh"
+                                    mesh = "face_part_mesh"
+                                    pos = "-0.0045 -0.0000913778 -0.0178"
+                                    quat = "0.5 0.5 0.5 0.5"
+                                    contype = "0"
+                                    conaffinity = "0"/>
+                            </body>
+                            <body name = "top_head_shell" pos="0 0 0" quat = "1 0 0 0">
+                                <geom name = "top_head_shell_visual"
+                                    type = "mesh"
+                                    mesh = "top_head_shell_mesh"
+                                    pos = "-0.0045 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"
+                                    contype = "0"
+                                    conaffinity = "0"/>
+                                <geom name = "top_head_collision"
+                                    type = "mesh"
+                                    mesh = "top_head_shell_mesh"
+                                    class = "collision"
+                                    pos = "-0.0045 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"/>
+                            </body>
+                            <body name = "bottom_head_shell" pos="0 0 0" quat = "1 0 0 0">
+                                <geom name = "bottom_head_shell_visual"
+                                    type = "mesh"
+                                    mesh = "bottom_head_shell_mesh"
+                                    pos = "-0.0043 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"
+                                    contype = "0"
+                                    conaffinity = "0"/>
+                                <geom name = "bottom_head_shell_collision"
+                                    type = "mesh"
+                                    mesh = "bottom_head_shell_mesh"
+                                    class = "collision"
+                                    pos = "-0.0043 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"/>
+                            </body>
+                            <body name = "jaw" pos="0 0 0" quat = "1 0 0 0">
+                                <geom name = "jaw_visual"
+                                    type = "mesh"
+                                    mesh = "jaw_mesh"
+                                    pos = "-0.0045 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"
+                                    contype = "0"
+                                    conaffinity = "0"/>
+                                <geom name = "jaw_collision"
+                                    type = "mesh"
+                                    mesh = "jaw_mesh"
+                                    class = "collision"
+                                    pos = "-0.0045 0 -0.018"
+                                    quat = "0.5 0.5 0.5 0.5"/>
+                            </body>
+                            <body name = "noenoeil" pos="0 0 0" quat = "1 0 0 0">
+                                <geom name = "noeneil_visual"
+                                    type = "mesh"
+                                    mesh = "noenoeil_mesh"
+                                    pos = "-0.0045 -0.0000913778 -0.0178"
+                                    quat = "0.5 0.5 0.5 0.5"
+                                    contype = "0"
+                                    conaffinity = "0"/>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <body name = "bearing_roll" pos = "0.006 -0.0175 -0.005" quat = "0 -0.707107 -0.707107 0">
+                <inertial pos="-8.8e-11 0.00099414 0.0168917"
+                          mass="0.0230406"
+                          fullinertia="4.1964e-06 3.41752e-06 2.3265e-06 0 0 -5.0881e-08"/>
+                <geom name="right_yaw_xl330_visual"
+                    class="detail_visual"
+                    mesh="xl330_mesh"
+                    pos="0 0 0.0125"
+                    quat="0 -0.707107 0.707107 0"/>
+
+                <geom name="right_bearing_roll_visual"
+                    class="detail_visual"
+                    mesh="bearing_roll_mesh"
+                    pos="-0.0175 -0.002 0.0125"
+                    quat="0 1 0 0"/>
+
+                <geom name="right_yaw_bearing_visual"
+                    class="detail_visual"
+                    mesh="bearing_22_mesh"
+                    pos="0 0.0165 0.0125"
+                    quat="0.5 0.5 0.5 -0.5"/>
+                <geom name = "bearing_roll_visual"
+                      type = "mesh"
+                      mesh = "yaw2roll_mesh"
+                      pos = "-0.0175 -0.002 0.0125"
+                      quat = "0 1 0 0"
+                      contype = "0"
+                      conaffinity = "0"/>
+                <joint name = "right_hip_yaw"
+                       type = "hinge"
+                       pos = "0 0 0"
+                       axis = "0 0 1"
+                       limited = "true"
+                       range = "-0.523599 0.436332"
+                       class="chosen_actuator"/>
+                <body name = "hip_l_2" pos = "0 0.0165 0.0125" quat = "0 0 0.707107 0.707107">
+                    <inertial pos="0.014815 1.6212e-08 -0.00829992"
+                              mass="0.00618934"
+                              fullinertia="8.60626e-07 1.15753e-06 6.51588e-07 1e-12 3.89882e-07 -1e-12"/>
+                    <geom name="right_hip_bearing_visual"
+                        class="detail_visual"
+                        mesh="bearing_22_mesh"
+                        pos="0.025 0 -0.0185"
+                        quat="0.5 0.5 -0.5 -0.5"/>
+                    <geom name = "hip_l_2_visual"
+                          type = "mesh"
+                          mesh = "hip_l_mesh"
+                          pos = "-0.0175 0 -0.0185"
+                          quat = "0.707107 -0.707107 0 0"
+                          contype = "0"
+                          conaffinity = "0"/>
+                    <geom name = "right_hip_collision"
+                          type = "mesh"
+                          mesh = "hip_l_mesh"
+                          pos = "-0.0175 0 -0.0185"
+                          class = "collision"
+                          quat = "0.707107 -0.707107 0 0"/>
+                    <joint name = "right_hip_roll"
+                           type = "hinge"
+                           pos = "0 0 0"
+                           axis = "0 0 1"
+                           limited = "true"
+                           range = "-0.383972 0.383972"
+                           class="chosen_actuator"/>
+                    <body name = "upper_leg_right" pos = "0.025 0 -0.0185" quat = "0.5 -0.5 0.5 -0.5">
+                        <inertial pos="-0.006766 0.0228838 0.0134531"
+                                  mass="0.0482067"
+                                  fullinertia="1.68753e-05 1.03691e-05 1.98269e-05 4.41852e-06 -2.27982e-07 3.89298e-07"/>
+                        <geom name="right_upper_xl330_knee_visual"
+                            class="detail_visual"
+                            mesh="xl330_mesh"
+                            pos="-0.022 0.0357771 0.0125"
+                            quat="0.707107 0 -0.707107 0"/>
+
+                        <geom name="right_upper_bearing_visual"
+                            class="detail_visual"
+                            mesh="bearing_22_mesh"
+                            pos="-0.022 0.0357771 0"
+                            quat="0 1 0 0"/>
+
+                        <geom name="right_upper_rigidity_plate_visual"
+                            class="detail_visual"
+                            mesh="upper_leg_rigidity_plate_mesh"
+                            pos="0 0 0.0435"
+                            quat="0.5 -0.5 0.5 0.5"/>
+
+                        <geom name="right_upper_xl330_hip_visual"
+                            class="detail_visual"
+                            mesh="xl330_mesh"
+                            pos="0 0 0.0125"
+                            quat="0.5 0.5 -0.5 0.5"/>
+                        <geom name = "upper_leg_right_visual"
+                              type = "mesh"
+                              mesh = "upper_leg_right_mesh"
+                              pos = "0 0 -0.0425"
+                              quat = "0.5 -0.5 0.5 0.5"
+                              contype = "0"
+                              conaffinity = "0"/>
+                        <joint name = "right_hip_pitch"
+                               type = "hinge"
+                               pos = "0 0 0"
+                               axis = "0 0 1"
+                               limited = "true"
+                               range = "-1.570796 1.570796"
+                               class="chosen_actuator"/>
+                        <body name = "leg_2" pos = "-0.022 0.0357771 -0.004" quat = "0 1 0 0">
+                            <inertial pos="-0.0318937 -1.52e-10 -0.00953505"
+                                      mass="0.0215844"
+                                      fullinertia="2.15507e-06 5.25056e-06 4.33925e-06 1e-12 -7.65005e-07 0"/>
+                            <geom name="right_leg_xl330_visual"
+                                class="detail_visual"
+                                mesh="xl330_mesh"
+                                pos="-0.042 0 -0.0115"
+                                quat="0.707107 0 -0.707107 0"/>
+                            <geom name = "leg_right_visual"
+                                  type = "mesh"
+                                  mesh = "leg_mesh"
+                                  pos = "-0.0357771 -0.022 0.0385"
+                                  quat = "0.707107 0 0.707107 0"
+                                  contype = "0"
+                                  conaffinity = "0"/>
+                            <geom name = "right_leg_collision"
+                                  type = "mesh"
+                                  mesh = "leg_mesh"
+                                  class = "collision"
+                                  pos = "-0.0357771 -0.022 0.0385"
+                                  quat = "0.707107 0 0.707107 0"/>
+                            <joint name = "right_knee"
+                                  type = "hinge"
+                                  pos = "0 0 0"
+                                  axis = "0 0 1"
+                                  limited = "true"
+                                  range = "-1.570796 1.570796"
+                                  class="chosen_actuator"/>
+                            <body name = "ankle_right" pos = "-0.042 0 -0.026" quat = "0 -0.707107 -0.707107 0">
+                                <inertial pos="0.00615539 -0.0137482 -0.0156566"
+                                          mass="0.0300251"
+                                          fullinertia="5.91534e-06 1.11534e-05 7.74015e-06 2.04877e-07 -8.2467e-08 5.7017e-08"/>
+                                <geom name="right_ankle_bearing_visual"
+                                        class="detail_visual"
+                                        mesh="bearing_default_mesh"
+                                        pos="0 0 -0.0292"
+                                        quat="0 -1 0 0"/>
+                                <geom name = "ankle_right_visual"
+                                      type = "mesh"
+                                      mesh = "ankle_right_mesh"
+                                      pos = "0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 0.5 0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>
+                                <geom name = "foot_right_visual"
+                                      type = "mesh"
+                                      mesh = "foot_right_mesh"
+                                      pos = "0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 0.5 0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>         
+                                <geom name = "sole_right_visual"
+                                      type = "mesh"
+                                      mesh = "sole_right_mesh"
+                                      pos = "0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 0.5 0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>
+                                <geom name = "right_foot_collision"
+                                      type = "mesh"
+                                      mesh = "sole_right_mesh"
+                                      pos = "0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 0.5 0.5"
+                                      contype = "1"
+                                      conaffinity = "1"
+                                      mass = "0"/>
+                                <joint name = "right_ankle"
+                                      type = "hinge"
+                                      pos = "0 0 0"
+                                      axis = "0 0 1"
+                                      limited = "true"
+                                      range = "-1.570796 1.570796"
+                                      class="chosen_actuator"/>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            
+            <body name = "yaw2roll" pos="0.006 0.0175 -0.005" quat = "0 -0.707107 -0.707107 0">
+                <geom name="left_yaw_xl330_visual"
+                    class="detail_visual"
+                    mesh="xl330_mesh"
+                    pos="0 0 0.0125"
+                    quat="0 -0.707107 0.707107 0"/>
+
+                <geom name="left_yaw_bearing_visual"
+                    class="detail_visual"
+                    mesh="bearing_22_mesh"
+                    pos="0 0.0165 0.0125"
+                    quat="0.5 0.5 0.5 -0.5"/>
+
+                <geom name="left_bearing_roll_visual"
+                    class="detail_visual"
+                    mesh="bearing_roll_mesh"
+                    pos="-0.0175 -0.002 0.0125"
+                    quat="0 -1 0 0"/>
+                <inertial pos="-8.8e-11 0.00099414 0.0168917"
+                          mass="0.0230406"
+                          fullinertia="4.1964e-06 3.41752e-06 2.3265e-06 0 0 -5.0881e-08"/>
+                <geom name = "yaw2roll_visual"
+                      type = "mesh"
+                      mesh = "yaw2roll_mesh"
+                      pos = "-0.0175 -0.002 0.0125"
+                      quat = "0 1 0 0"
+                      contype = "0"
+                      conaffinity = "0"/>
+                <joint name = "left_hip_yaw"
+                       type = "hinge"
+                       pos = "0 0 0"
+                       axis = "0 0 1"
+                       limited = "true"
+                       range = "-0.436332 0.523599"
+                       class="chosen_actuator"/>
+
+                <body name = "hip_l" pos="0 0.0165 0.0125" quat = "0.707107 -0.707107 0 0">
+                    <inertial pos="0.014815 1.6179e-08 -0.00829992"
+                              mass="0.00618934"
+                              fullinertia="8.60626e-07 1.15753e-06 6.51588e-07 1e-12 3.89882e-07 -1e-12"/>
+                    <geom name="left_hip_bearing_visual"
+                        class="detail_visual"
+                        mesh="bearing_22_mesh"
+                        pos="0.021 0 -0.0185"
+                        quat="0.5 0.5 0.5 0.5"/>
+                    <geom name = "hip_l_visual"
+                          type = "mesh"
+                          mesh = "hip_l_mesh"
+                          pos = "-0.0175 0 -0.0185"
+                          quat = "0.707107 -0.707107 0 0"
+                          contype = "0"
+                          conaffinity = "0"/>
+                    <geom name = "left_hip_collision"
+                          type = "mesh"
+                          mesh = "hip_l_mesh"
+                          class = "collision"
+                          pos = "-0.0175 0 -0.0185"
+                          quat = "0.707107 -0.707107 0 0"/>
+                    <joint name = "left_hip_roll"
+                           type = "hinge"
+                           axis = "0 0 1"
+                           pos = "0 0 0"
+                           limited = "true"
+                           range = "-0.383972 0.383972"
+                           class="chosen_actuator"/>
+                    <body name = "upper_leg_left" pos = "0.025 0 -0.0185" quat = "0.5 -0.5 0.5 -0.5">
+                        <inertial pos="0.006766 0.0228838 0.0134531"
+                                  mass="0.0482067"
+                                  fullinertia="1.68753e-05 1.03691e-05 1.98269e-05 -4.41852e-06 2.27982e-07 3.89298e-07"/>
+                        <geom name="left_upper_xl330_knee_visual"
+                            class="detail_visual"
+                            mesh="xl330_mesh"
+                            pos="0.022 0.0357771 0.0125"
+                            quat="0 0.707107 0 0.707107"/>
+
+                        <geom name="left_upper_rigidity_plate_visual"
+                            class="detail_visual"
+                            mesh="upper_leg_rigidity_plate_mesh"
+                            pos="0 0 -0.0425"
+                            quat="0.5 -0.5 -0.5 -0.5"/>
+
+                        <geom name="left_upper_bearing_visual"
+                            class="detail_visual"
+                            mesh="bearing_22_mesh"
+                            pos="0.022 0.0357771 -0.004"
+                            quat="0 0 0 1"/>
+
+                        <geom name="left_upper_xl330_hip_visual"
+                            class="detail_visual"
+                            mesh="xl330_mesh"
+                            pos="0 0 0.0125"
+                            quat="0.5 0.5 -0.5 0.5"/>
+                        <geom name = "ull"
+                              type = "mesh"
+                              mesh = "ull_mesh"
+                              pos = "0 0 -0.0425"
+                              quat = "0.5 -0.5 -0.5 -0.5"
+                              contype = "0"
+                              conaffinity = "0"/>
+                        <joint name = "left_hip_pitch"
+                               type = "hinge"
+                               pos = "0 0 0"
+                               axis = "0 0 1"
+                               limited = "true"
+                               range = "-1.570796 1.570796"
+                               class="chosen_actuator"/>
+                        <body name = "leg" pos = "0.022 0.0357771 -0.004" quat = "0 0.707107 0.707107 0">
+                            <inertial pos="-1.52e-10 0.0318937 -0.00953505"
+                                      mass="0.0215844"
+                                      fullinertia="5.25056e-06 2.15507e-06 4.33925e-06 -1e-12 0 7.65005e-07"/>
+                            <geom name="left_leg_xl330_visual"
+                                class="detail_visual"
+                                mesh="xl330_mesh"
+                                pos="0 0.042 -0.0115"
+                                quat="0.5 -0.5 -0.5 -0.5"/>
+                            <geom name ="leg_visual"
+                                  type = "mesh"
+                                  mesh = "leg_mesh"
+                                  pos = "-0.022 0.0357771 0.0385"
+                                  quat = "0.5 0.5 0.5 -0.5"
+                                  contype = "0"
+                                  conaffinity = "0"/>
+                            <geom name ="left_leg_collision"
+                                  type = "mesh"
+                                  mesh = "leg_mesh"
+                                  class = "collision"
+                                  pos = "-0.022 0.0357771 0.0385"
+                                  quat = "0.5 0.5 0.5 -0.5"/>
+                            <joint name = "left_knee"
+                                   type = "hinge"
+                                   pos = "0 0 0"
+                                   axis = "0 0 1"
+                                   limited = "true"
+                                   range = "-1.570796 1.570796"
+                                   class="chosen_actuator"/>
+                            <body name = "ankle_left" pos = "0 0.042 -0.026" quat = "0 -1 0 0">
+                                <inertial pos="-0.00615742 -0.0137483 -0.0156585"
+                                          mass="0.0300246"
+                                          fullinertia="5.91525e-06 1.11534e-05 7.74016e-06 -2.05354e-07 8.218e-08 5.6722e-08"/>
+                                <geom name="left_ankle_bearing_visual"
+                                    class="detail_visual"
+                                    mesh="bearing_default_mesh"
+                                    pos="0 0 -0.0322"
+                                    quat="0 0 0 1"/>
+                                <geom name ="ankle_left_visual"
+                                      type = "mesh"
+                                      mesh = "ankle_left_mesh"
+                                      pos = "-0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 -0.5 -0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>
+                                <geom name ="foot_left_visual"
+                                      type = "mesh"
+                                      mesh = "foot_left_mesh"
+                                      pos = "-0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 -0.5 -0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>
+                                <geom name ="sole_left_visual"
+                                      type = "mesh"
+                                      mesh = "sole_left_mesh"
+                                      pos = "-0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 -0.5 -0.5"
+                                      contype = "0"
+                                      conaffinity = "0"/>
+                                <geom name = "left_foot_collision"
+                                      type = "mesh"
+                                      mesh = "sole_left_mesh"
+                                      pos = "-0.022 0.00622291 -0.0647"
+                                      quat = "0.5 -0.5 -0.5 -0.5"
+                                      contype = "1"
+                                      conaffinity = "1"
+                                      mass = "0"/>
+                                <joint name = "left_ankle"
+                                       type = "hinge"
+                                       pos = "0 0 0"
+                                       axis = "0 0 1"
+                                       limited = "true"
+                                       range = "-1.570796 1.570796"
+                                       class="chosen_actuator"/>
+                            </body>
+                        </body>
+                    </body>
+                </body>   
+            </body>
+        </body>
+
+    </worldbody>
+
+
+<actuator>
+
+
+
+    <position name="left_hip_yaw_servo"
+              joint="left_hip_yaw"
+              class="chosen_actuator"/>
+
+    <position name="left_hip_roll_servo"
+              joint="left_hip_roll"
+              class="chosen_actuator"/>
+
+    <position name="left_hip_pitch_servo"
+              joint="left_hip_pitch"
+              class="chosen_actuator"/>
+
+    <position name="left_knee_servo"
+              joint="left_knee"
+              class="chosen_actuator"/>
+
+    <position name="left_ankle_servo"
+              joint="left_ankle"
+              class="chosen_actuator"/>
+
+
+
+    <position name="right_hip_yaw_servo"
+              joint="right_hip_yaw"
+              class="chosen_actuator"/>
+
+    <position name="right_hip_roll_servo"
+              joint="right_hip_roll"
+              class="chosen_actuator"/>
+
+    <position name="right_hip_pitch_servo"
+              joint="right_hip_pitch"
+              class="chosen_actuator"/>
+
+    <position name="right_knee_servo"
+              joint="right_knee"
+              class="chosen_actuator"/>
+
+    <position name="right_ankle_servo"
+              joint="right_ankle"
+              class="chosen_actuator"/>
+
+
+
+    <position name="neck_pitch_servo"
+              joint="neck_pitch"
+              class="chosen_actuator"/>
+
+    <position name="head_pitch_servo"
+              joint="head_pitch"
+              class="chosen_actuator"/>
+
+    <position name="head_yaw_servo"
+              joint="head_yaw"
+              class="chosen_actuator"/>
+
+    <position name="head_roll_servo"
+              joint="head_roll"
+              class="chosen_actuator"/>
+
+</actuator>
+
+<keyframe>
+    <key name = "STAND"
+         qpos ="
+             0 0 0.12 1 0 0 0
+             0.34906585 0.34906585 0 0
+             0 0.08726646 0.457924 0.004940 -0.452984
+             0 -0.08726646 -0.457924 -0.004940 0.452984"
+         ctrl = "
+             0 -0.08726646 -0.457924 -0.004940 0.452984
+             0 0.08726646 0.457924 0.004940 -0.452984
+             0.34906585 0.34906585 0 0"/>
+</keyframe>
+</mujoco>
