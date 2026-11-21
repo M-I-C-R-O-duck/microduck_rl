@@ -1,5 +1,5 @@
 <mujoco model = "microduck_test">
-    <compiler meshdir="meshes"/>
+    <compiler meshdir="meshes" angle="radian"/>
     <option integrator = "implicitfast"/>
     <default>
         <geom mass="0"/>
@@ -22,6 +22,7 @@
             <position kp = "0.55" kv = "0" ctrlrange = "-10 10" forcerange = "-0.96 0.96" ctrllimited = "true" forcelimited = "true"/>
         </default>
     </default>
+
     <asset>
         <mesh name = "trunk_mesh" file = "trunk_base.stl"/>
         <mesh name = "ull_mesh" file = "upper_leg_left.stl"/>
@@ -62,18 +63,9 @@
         <mesh name="soft_mouth_top_mesh" file="soft_mouth_top.stl"/>
         <mesh name="xl330_mesh" file="xl330.stl"/>
 
-
-        
     </asset>
 
     <worldbody>
-        <geom name = "ground"
-              type = "plane"
-              pos = "0 0 0"
-              size = "2 2 0.1"
-              rgba = "0.34 0.4 0.45 1"
-              contype = "1"
-              conaffinity = "1"/>
         <body name = "trunk_body" pos="0 0 0.12" quat = "1 0 0 0">
 
             <geom name="trunk_bearing_left_visual"
@@ -81,22 +73,16 @@
                 mesh="bearing_22_mesh"
                 pos="0.006 0.0175 -0.005"
                 quat="1 0 0 0"/>
-
-
             <geom name="trunk_pcb_locker_visual"
                 class="detail_visual"
                 mesh="banana_pcb_locker_mesh"
                 pos="0.0042 0 -0.0175215"
                 quat="0.707107 0 0 0.707107"/>
-
-
             <geom name="trunk_xl330_left_visual"
                 class="detail_visual"
                 mesh="xl330_mesh"
                 pos="0.006 0.0175 0.0115"
                 quat="0 -0.707107 0 -0.707107"/>
-
-
             <geom name="trunk_power_support_visual"
                 class="detail_visual"
                 mesh="power_support_mesh"
@@ -116,7 +102,7 @@
                 class="detail_visual"
                 mesh="xl330_mesh"
                 pos="0.006 -0.0175 0.0115"
-                quat="0 -0.707107 0 -0.707107"/>
+                quat="0 -0.707107 0 -0.707107"/>  
             <geom name="trunk_bearing_right_visual"
                 class="detail_visual"
                 mesh="bearing_22_mesh"
@@ -134,6 +120,7 @@
                   quat = "0.707107 0 0 0.707107"
                   contype = "0"
                   conaffinity = "0"/>
+
             <body name = "left_shell" pos="0 0 0" quat = "1 0 0 0">
                 <geom name="left_shell_collision"
                       class="collision"
@@ -148,6 +135,7 @@
                       contype = "0"
                       conaffinity = "0"/>
             </body>
+
             <body name = "right_shell" pos="0 0 0" quat = "1 0 0 0">
                 <geom name="right_shell_collision"
                       class="collision"
@@ -162,6 +150,7 @@
                       contype = "0"
                       conaffinity = "0"/>
             </body>
+
             <body name = "neck" pos = "0.026 0.0145 0.0324215" quat = "0 0 0.707107 -0.707107">
                 <inertial pos="0 -0.025 0.0141665"
                           mass="0.0368414"
@@ -171,7 +160,6 @@
                     mesh="xl330_mesh"
                     pos="0 0 0.0145"
                     quat="0.5 -0.5 -0.5 -0.5"/>
-
                 <geom name="neck_xl330_lower_visual"
                     class="detail_visual"
                     mesh="xl330_mesh"
@@ -191,6 +179,7 @@
                        limited = "true"
                        range = "-1.570796 1.047198"
                        class="chosen_actuator"/>
+
                 <body name = "neck_pitch" pos = "0 -0.05 0" quat = "0 1 0 0">
                     <geom name="neck_pitch_bearing_visual"
                             class="detail_visual"
@@ -214,6 +203,7 @@
                            limited = "true"
                            range = "-1.570796 1.570796"
                            class="chosen_actuator"/>
+
                     <body name = "yaw_roll_motion" pos = "0 0.0186931 -0.0145" quat = "0 0 -0.707107 -0.707107">
                         <inertial pos="-0.000166657 -0.00500964 0.0178065"
                                   mass="0.0486"
@@ -249,72 +239,56 @@
                                limited = "true"
                                range = "-2.967060 2.967060"
                                class="chosen_actuator"/>
+
                         <body name = "jaw_soft" pos = "-0.0179 0 0.0145" quat = "0.707107 0 -0.707107 0">
                             <inertial pos="0.00460523 0.00120047 -0.0324761"
                                       mass="0.188766"
                                       fullinertia="0.000320811 0.0002541 0.000149882 -6.32293e-07 6.57153e-06 4.18477e-06"/>
-     
                             <geom name="head_lens_visual"
                                 class="detail_visual"
                                 mesh="lens_mesh"
                                 pos="0.0155 -9.13778e-05 -0.05548"
                                 quat="0.5 -0.5 0.5 -0.5"/>
-
-
                             <geom name="head_xl330_side_visual"
                                 class="detail_visual"
                                 mesh="xl330_mesh"
                                 pos="0.003 0.0255 -0.018"
                                 quat="0.707107 0 0 -0.707107"/>
-
-
                             <geom name="head_motor_support_visual"
                                 class="detail_visual"
                                 mesh="motor_support_mesh"
                                 pos="-0.0045 0 -0.018"
                                 quat="0.5 0.5 0.5 0.5"/>
-
                             <geom name="head_xl330_center_visual"
                                 class="detail_visual"
                                 mesh="xl330_mesh"
                                 pos="0 0 0.0145"
                                 quat="0.5 -0.5 -0.5 -0.5"/>
-
-
                             <geom name="head_bearing_visual"
                                 class="detail_visual"
                                 mesh="bearing_default_mesh"
                                 pos="0.0032 -0.04 -0.018"
                                 quat="0.5 -0.5 0.5 0.5"/>
-
                             <geom name="head_robot_hat_visual"
                                 class="detail_visual"
                                 mesh="robot_hat_mesh"
                                 pos="0.02694 0.0289936 -0.0519"
                                 quat="0.707107 0 0 -0.707107"/>
-
-
                             <geom name="head_soft_mouth_top_visual"
                                 class="detail_visual"
                                 mesh="soft_mouth_top_mesh"
                                 pos="-0.00420071 1.7776e-08 -0.0180814"
                                 quat="0.5 0.5 0.5 0.5"/>
-
-
                             <geom name="head_m12_lens_holder_visual"
                                 class="detail_visual"
                                 mesh="m12_lens_holder_mesh"
                                 pos="0.0155 -9.13778e-05 -0.05558"
                                 quat="0.5 -0.5 0.5 -0.5"/>
-
-
                             <geom name="head_rpi_zero_visual"
                                 class="detail_visual"
                                 mesh="rpi_zero_mesh"
                                 pos="0.015435 -1.13778e-05 -0.06001"
                                 quat="0.5 -0.5 -0.5 0.5"/>
-
-
                             <geom name="head_speaker_visual"
                                 class="detail_visual"
                                 mesh="speaker_mesh"
@@ -334,6 +308,7 @@
                                    limited = "true"
                                    range = "-0.436332 0.436332"
                                    class="chosen_actuator"/>
+
                             <body name = "face_part" pos="0 0 0" quat = "1 0 0 0">
                                 <geom name = "face_part_visual"
                                     type = "mesh"
@@ -343,6 +318,7 @@
                                     contype = "0"
                                     conaffinity = "0"/>
                             </body>
+
                             <body name = "top_head_shell" pos="0 0 0" quat = "1 0 0 0">
                                 <geom name = "top_head_shell_visual"
                                     type = "mesh"
@@ -358,6 +334,7 @@
                                     pos = "-0.0045 0 -0.018"
                                     quat = "0.5 0.5 0.5 0.5"/>
                             </body>
+
                             <body name = "bottom_head_shell" pos="0 0 0" quat = "1 0 0 0">
                                 <geom name = "bottom_head_shell_visual"
                                     type = "mesh"
@@ -373,6 +350,7 @@
                                     pos = "-0.0043 0 -0.018"
                                     quat = "0.5 0.5 0.5 0.5"/>
                             </body>
+
                             <body name = "jaw" pos="0 0 0" quat = "1 0 0 0">
                                 <geom name = "jaw_visual"
                                     type = "mesh"
@@ -388,6 +366,7 @@
                                     pos = "-0.0045 0 -0.018"
                                     quat = "0.5 0.5 0.5 0.5"/>
                             </body>
+
                             <body name = "noenoeil" pos="0 0 0" quat = "1 0 0 0">
                                 <geom name = "noeneil_visual"
                                     type = "mesh"
@@ -410,13 +389,11 @@
                     mesh="xl330_mesh"
                     pos="0 0 0.0125"
                     quat="0 -0.707107 0.707107 0"/>
-
                 <geom name="right_bearing_roll_visual"
                     class="detail_visual"
                     mesh="bearing_roll_mesh"
                     pos="-0.0175 -0.002 0.0125"
                     quat="0 1 0 0"/>
-
                 <geom name="right_yaw_bearing_visual"
                     class="detail_visual"
                     mesh="bearing_22_mesh"
@@ -436,6 +413,7 @@
                        limited = "true"
                        range = "-0.523599 0.436332"
                        class="chosen_actuator"/>
+
                 <body name = "hip_l_2" pos = "0 0.0165 0.0125" quat = "0 0 0.707107 0.707107">
                     <inertial pos="0.014815 1.6212e-08 -0.00829992"
                               mass="0.00618934"
@@ -465,6 +443,7 @@
                            limited = "true"
                            range = "-0.383972 0.383972"
                            class="chosen_actuator"/>
+
                     <body name = "upper_leg_right" pos = "0.025 0 -0.0185" quat = "0.5 -0.5 0.5 -0.5">
                         <inertial pos="-0.006766 0.0228838 0.0134531"
                                   mass="0.0482067"
@@ -506,6 +485,7 @@
                                limited = "true"
                                range = "-1.570796 1.570796"
                                class="chosen_actuator"/>
+
                         <body name = "leg_2" pos = "-0.022 0.0357771 -0.004" quat = "0 1 0 0">
                             <inertial pos="-0.0318937 -1.52e-10 -0.00953505"
                                       mass="0.0215844"
@@ -535,6 +515,7 @@
                                   limited = "true"
                                   range = "-1.570796 1.570796"
                                   class="chosen_actuator"/>
+
                             <body name = "ankle_right" pos = "-0.042 0 -0.026" quat = "0 -0.707107 -0.707107 0">
                                 <inertial pos="0.00615539 -0.0137482 -0.0156566"
                                           mass="0.0300251"
@@ -592,13 +573,11 @@
                     mesh="xl330_mesh"
                     pos="0 0 0.0125"
                     quat="0 -0.707107 0.707107 0"/>
-
                 <geom name="left_yaw_bearing_visual"
                     class="detail_visual"
                     mesh="bearing_22_mesh"
                     pos="0 0.0165 0.0125"
                     quat="0.5 0.5 0.5 -0.5"/>
-
                 <geom name="left_bearing_roll_visual"
                     class="detail_visual"
                     mesh="bearing_roll_mesh"
@@ -651,6 +630,7 @@
                            limited = "true"
                            range = "-0.383972 0.383972"
                            class="chosen_actuator"/>
+
                     <body name = "upper_leg_left" pos = "0.025 0 -0.0185" quat = "0.5 -0.5 0.5 -0.5">
                         <inertial pos="0.006766 0.0228838 0.0134531"
                                   mass="0.0482067"
@@ -660,19 +640,16 @@
                             mesh="xl330_mesh"
                             pos="0.022 0.0357771 0.0125"
                             quat="0 0.707107 0 0.707107"/>
-
                         <geom name="left_upper_rigidity_plate_visual"
                             class="detail_visual"
                             mesh="upper_leg_rigidity_plate_mesh"
                             pos="0 0 -0.0425"
                             quat="0.5 -0.5 -0.5 -0.5"/>
-
                         <geom name="left_upper_bearing_visual"
                             class="detail_visual"
                             mesh="bearing_22_mesh"
                             pos="0.022 0.0357771 -0.004"
                             quat="0 0 0 1"/>
-
                         <geom name="left_upper_xl330_hip_visual"
                             class="detail_visual"
                             mesh="xl330_mesh"
@@ -692,6 +669,7 @@
                                limited = "true"
                                range = "-1.570796 1.570796"
                                class="chosen_actuator"/>
+
                         <body name = "leg" pos = "0.022 0.0357771 -0.004" quat = "0 0.707107 0.707107 0">
                             <inertial pos="-1.52e-10 0.0318937 -0.00953505"
                                       mass="0.0215844"
@@ -721,6 +699,7 @@
                                    limited = "true"
                                    range = "-1.570796 1.570796"
                                    class="chosen_actuator"/>
+                                   
                             <body name = "ankle_left" pos = "0 0.042 -0.026" quat = "0 -1 0 0">
                                 <inertial pos="-0.00615742 -0.0137483 -0.0156585"
                                           mass="0.0300246"
