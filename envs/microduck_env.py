@@ -14,7 +14,7 @@ class MicroDuckEnv:
 
         ## load xml files
         if xml_path is None:
-            xml_path = Path(__file__).parent.parent / "tests" / "fixtures" / "toy_assets"  / "scene.xml" # TODO: need to fix
+            xml_path = Path(__file__).parent.parent / "assets" / "scene.xml"
 
         self.model = mujoco.MjModel.from_xml_path(str(xml_path))
         self.data = mujoco.MjData(self.model)
