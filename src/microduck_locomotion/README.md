@@ -53,7 +53,7 @@ microduck_locomotion/
 | 4 | 填模板里所有 "Set per-robot" 的空位（见下） | ✅（reward 部分除外） |
 | 5 | action scale = 0.44 rad（= 0.25 × 力矩上限 0.96 / kp 0.55） | ✅ |
 | 6 | 观测和速度命令（见下） | ✅ |
-| 7 | reward 和终止条件 | ❌ 待定，和队友商量中 |
+| 7 | reward 和终止条件 | ❌ 见下面待定，下周商量 |
 | 8 | play 模式（看效果时用） | ✅ |
 
 **第 4 步用到的名字（都来自 `assets/microduck.xml`）：**
