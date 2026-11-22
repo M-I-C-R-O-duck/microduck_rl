@@ -113,6 +113,8 @@
                 pos = "-0.0226332 -2.70828e-05 0.00280064"
                 mass = "0.199224"
                 fullinertia = "0.000123975 0.000145931 0.000115351 7.1651e-08 -2.06915e-05 1.32429e-07"/>
+            <!-- real board's ~5 deg pitch offset is handled at deployment. -->
+            <site name = "imu" group = "3" pos = "-0.021 6.64098e-05 -0.0146984" quat = "1 0 0 0"/>
             <geom name = "trunk"
                   type = "mesh"
                   mesh = "trunk_mesh"
@@ -520,6 +522,7 @@
                                 <inertial pos="0.00615539 -0.0137482 -0.0156566"
                                           mass="0.0300251"
                                           fullinertia="5.91534e-06 1.11534e-05 7.74015e-06 2.04877e-07 -8.2467e-08 5.7017e-08"/>
+                                <site name = "right_foot" group = "3" pos = "0 -0.0238146 -0.0140852" quat = "0.707107 -0.707107 0 0"/>
                                 <geom name="right_ankle_bearing_visual"
                                         class="detail_visual"
                                         mesh="bearing_default_mesh"
@@ -704,6 +707,7 @@
                                 <inertial pos="-0.00615742 -0.0137483 -0.0156585"
                                           mass="0.0300246"
                                           fullinertia="5.91525e-06 1.11534e-05 7.74016e-06 -2.05354e-07 8.218e-08 5.6722e-08"/>
+                                <site name = "left_foot" group = "3" pos = "0 -0.0238146 -0.0140852" quat = "0 0 0.707107 0.707107"/>
                                 <geom name="left_ankle_bearing_visual"
                                     class="detail_visual"
                                     mesh="bearing_default_mesh"
@@ -753,6 +757,15 @@
         </body>
 
     </worldbody>
+
+
+<sensor>
+    <gyro          name = "imu_ang_vel"  site = "imu"/>
+    <accelerometer name = "imu_accel"    site = "imu"/>
+    <velocimeter   name = "imu_lin_vel"  site = "imu"/>
+    <framequat     name = "orientation"  objtype = "site" objname = "imu"/>
+    <subtreeangmom name = "root_angmom"  body = "trunk_body"/>
+</sensor>
 
 
 <actuator>
@@ -821,7 +834,7 @@
 
 </actuator>
 
-<keyframe>
+<!-- <keyframe>
     <key name = "STAND"
          qpos ="
              0 0 0.12 1 0 0 0
@@ -832,5 +845,5 @@
              0 -0.08726646 -0.457924 -0.004940 0.452984
              0 0.08726646 0.457924 0.004940 -0.452984
              0.34906585 0.34906585 0 0"/>
-</keyframe>
+</keyframe> -->
 </mujoco>

@@ -15,7 +15,7 @@ def get_spec():
     )
 
 INIT_STATE = EntityCfg.InitialStateCfg(
-    pos=(0.0, 0.0, 0.12),
+    pos=(0.0, 0.0, 0.1172),
     joint_pos={
         "left_hip_yaw": 0.0, "left_hip_roll": -0.08726646, "left_hip_pitch": -0.457924, "left_knee": -0.004940, "left_ankle": 0.452984,
         "right_hip_yaw": 0.0, "right_hip_roll": 0.08726646, "right_hip_pitch": 0.457924, "right_knee": 0.004940, "right_ankle": -0.452984,
@@ -25,7 +25,10 @@ INIT_STATE = EntityCfg.InitialStateCfg(
 
 ARTICULATION = EntityArticulationInfoCfg(
     actuators=(
-        XmlActuatorCfg(target_names_expr=(".*",)),
+        XmlActuatorCfg(target_names_expr=(
+            "neck_pitch", "head_.*",
+            ".*_hip_yaw", ".*_hip_roll", ".*_hip_pitch", ".*_knee", ".*_ankle",
+        )),
     ),
 )
 
