@@ -13,7 +13,5 @@ dependencies = [
     "torch",
     "pyyaml",
     "onnx",
+    "mjlab"
 ]
-
-[tool.setuptools]
-packages = ["envs", "algorithms"]
