@@ -79,7 +79,7 @@ microduck_locomotion/
 
 ⚠️ 目前 `env.reset()` 可以跑通，但 `env.step()` 会报错，因为模板里 `pose` reward 的 std 还是空的。这要等第 7 步。
 
-### tasks/__init__.py 🟡 写好了，但依赖 rl_cfg.py
+### tasks/__init__.py 🟡 写好了，但依赖 rl_cfg.py（还没写）
 
 调用 `register_mjlab_task(...)`，把任务 `Microduck-Velocity-Flat` 注册到 mjlab，这样 mjlab 的 `train` / `play` / `list-envs` 命令能找到它。
 
@@ -92,11 +92,11 @@ microduck_locomotion/
 microduck = "microduck_locomotion.tasks"
 ```
 
-### tasks/rl_cfg.py ❌ 空，待定
+### tasks/rl_cfg.py ❌ 还没写
 
 PPO 的超参数和 actor / critic 网络结构（`RslRlOnPolicyRunnerCfg`），参考 `mjlab/tasks/velocity/config/g1/rl_cfg.py`。只有在用 rsl_rl 的 PPO 时才需要；如果完全自己写 PPO，可以不用。
 
-### tasks/mdp.py ❌ 空，待定
+### tasks/mdp.py ❌ 还没写
 
 自己写的 reward / 观测函数。格式：`def my_reward(env, ...) -> torch.Tensor`，返回形状 `[num_envs]`，再在 `velocity_env_cfg.py` 里用 `RewardTermCfg(func=..., weight=..., params=...)` 接进去。
 
